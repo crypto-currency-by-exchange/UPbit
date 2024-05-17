@@ -18,7 +18,7 @@ public enum Change
 /// </summary>
 public enum Order
 {
-    Ask,
+    ASK,
     BID
 }
 
@@ -29,7 +29,7 @@ public enum Order
 /// </summary>
 public enum MarketState
 {
-    PERVIEW,
+    PREVIEW,
     ACTIVE,
     DELISTED
 }

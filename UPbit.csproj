@@ -12,10 +12,18 @@
 		<PackageProjectUrl>https://github.com/crypto-currency-by-exchange</PackageProjectUrl>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>ShareInvest.$(AssemblyName)</PackageId>
+		<PackageIcon>crypto.png</PackageIcon>
+		<PackageTags>crypto,trading,api,upbit,algorithm</PackageTags>
 		<Version>1.0.0.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Include="..\..\..\Pictures\Icon\crypto.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 		<None Include="I:\source\C#\.NET\NAVER\LICENSE.txt">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
