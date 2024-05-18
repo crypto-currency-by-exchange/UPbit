@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
@@ -38,6 +39,12 @@ public class Caution
     /// <summary>소수 계정 집중 경보 발령 여부</summary>
     [DataMember, JsonProperty("CONCENTRATION_OF_SMALL_ACCOUNTS"), JsonPropertyName("CONCENTRATION_OF_SMALL_ACCOUNTS")]
     public bool ConcentrationOfSmallAccounts
+    {
+        get; set;
+    }
+
+    [DataMember, Newtonsoft.Json.JsonIgnore, Key]
+    public string? Code
     {
         get; set;
     }

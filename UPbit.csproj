@@ -16,7 +16,7 @@
 		<PackageId>ShareInvest.$(AssemblyName)</PackageId>
 		<PackageIcon>crypto.png</PackageIcon>
 		<PackageTags>crypto,trading,api,upbit,algorithm</PackageTags>
-		<Version>1.0.0.0</Version>
+		<Version>1.0.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

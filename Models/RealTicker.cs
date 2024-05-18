@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
@@ -13,7 +14,7 @@ public class RealTicker : Ticker
         get; set;
     }
 
-    [DataMember, JsonProperty("code"), JsonPropertyName("code")]
+    [DataMember, JsonProperty("code"), JsonPropertyName("code"), Key]
     public override string? Code
     {
         get; set;
@@ -76,6 +77,12 @@ public class RealTicker : Ticker
     /// </summary>
     [DataMember, JsonProperty("stream_type"), JsonPropertyName("stream_type")]
     public StreamType StreamType
+    {
+        get; set;
+    }
+
+    [DataMember, JsonProperty("timestamp"), JsonPropertyName("timestamp"), Key]
+    public override long TimeStamp
     {
         get; set;
     }

@@ -183,7 +183,7 @@ public class Ticker
     }
 
     [DataMember, JsonProperty("timestamp"), JsonPropertyName("timestamp")]
-    public long TimeStamp
+    public virtual long TimeStamp
     {
         get; set;
     }
