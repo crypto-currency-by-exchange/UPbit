@@ -2,23 +2,23 @@
 
 using RestSharp;
 
+using ShareInvest.Crypto;
 using ShareInvest.UPbit.Models;
 
 using System.Net;
-using System.Text;
 
 namespace ShareInvest.UPbit;
 
-public class Quotation : RestClient
+public class Quotation : ShareQuotation
 {
     public Quotation() : base("https://api.upbit.com/v1")
     {
 
     }
 
-    public async Task<RestResponse> GetMarketAsync(bool isDetails = true)
+    public override async Task<RestResponse> GetMarketAsync(bool isDetails = true)
     {
-        return await ExecuteAsync(new RestRequest($"market/all?isDetails={isDetails}"), cts.Token);
+        return await base.GetMarketAsync(isDetails);
     }
 
     public async Task<Market[]> GetMarketAsync()
@@ -32,18 +32,9 @@ public class Quotation : RestClient
         return JsonConvert.DeserializeObject<Market[]>(res.Content) ?? [];
     }
 
-    public async Task<RestResponse> GetTickerAsync(params string[] codeArr)
+    public override async Task<RestResponse> GetTickerAsync(params string[] codeArr)
     {
-        StringBuilder sb = new();
-
-        foreach (string code in codeArr)
-        {
-            sb.Append(code);
-            sb.Append(',');
-        }
-        var request = new RestRequest($"ticker?markets={sb.Remove(sb.Length - 1, 1)}");
-
-        return await ExecuteAsync(request, cts.Token);
+        return await base.GetTickerAsync(codeArr);
     }
 
     public async Task<Ticker[]> GetTickerAsync(Market[] markets)
@@ -58,6 +49,4 @@ public class Quotation : RestClient
         }
         return JsonConvert.DeserializeObject<Ticker[]>(res.Content) ?? [];
     }
-
-    readonly CancellationTokenSource cts = new();
 }

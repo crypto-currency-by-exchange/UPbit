@@ -1,15 +1,16 @@
 ﻿using Newtonsoft.Json;
 
+using ShareInvest.Crypto;
 using ShareInvest.UPbit.EventHandler;
-
-using System.Net.WebSockets;
-using System.Text;
 
 namespace ShareInvest.UPbit;
 
-public class WebSocket : IDisposable
+public class WebSocket : ShareWebSocket<TickerEventArgs>
 {
-    public event EventHandler<TickerEventArgs>? SendTicker;
+    public WebSocket() : base("api.upbit.com/websocket/v1")
+    {
+
+    }
 
     /// <summary>
     /// ticket: 수신하는 대상을 식별
@@ -24,41 +25,21 @@ public class WebSocket : IDisposable
         {
             queue.Enqueue(obj);
         }
-        var json = JsonConvert.SerializeObject(queue);
-
-        await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(json)), WebSocketMessageType.Text, true, cts.Token);
+        await base.RequestAsync(JsonConvert.SerializeObject(queue));
     }
 
-    public async Task ReceiveAsync()
+    public override async Task RequestAsync(string json)
     {
-        while (WebSocketState.Open == socket.State)
-        {
-            var buffer = new byte[0x400];
-
-            var res = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), cts.Token);
-
-            SendTicker?.Invoke(this, new TickerEventArgs(Encoding.UTF8.GetString(buffer, 0, res.Count)));
-        }
+        await base.RequestAsync(json);
     }
 
-    public async Task ConnectAsync(string? token = null)
+    public override async Task ReceiveAsync()
     {
-        if (string.IsNullOrEmpty(token) is false)
-        {
-            socket.Options.SetRequestHeader("Authorization", $"Bearer {token}");
-        }
-        socket.Options.KeepAliveInterval = TimeSpan.FromSeconds(0xA);
-
-        await socket.ConnectAsync(new Uri("wss://api.upbit.com/websocket/v1"), cts.Token);
+        await base.ReceiveAsync();
     }
 
-    public void Dispose()
+    public override async Task ConnectAsync(string? token = null, TimeSpan? interval = null)
     {
-        socket.Dispose();
-
-        GC.SuppressFinalize(this);
+        await base.ConnectAsync(token, interval: interval ?? TimeSpan.FromSeconds(0xA));
     }
-
-    readonly ClientWebSocket socket = new();
-    readonly CancellationTokenSource cts = new();
 }

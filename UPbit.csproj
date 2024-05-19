@@ -14,13 +14,13 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>ShareInvest.$(AssemblyName)</PackageId>
-		<PackageIcon>crypto.png</PackageIcon>
+		<PackageIcon>png-transparent-upbit-hd-logo.png</PackageIcon>
 		<PackageTags>crypto,trading,api,upbit,algorithm</PackageTags>
-		<Version>1.0.0.1</Version>
+		<Version>1.0.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\..\Pictures\Icon\crypto.png">
+		<None Include="..\..\..\Pictures\Icon\png-transparent-upbit-hd-logo.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
@@ -31,8 +31,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="RestSharp" Version="110.2.0" />
+		<PackageReference Include="ShareInvest.Crypto" Version="1.0.0" />
 	</ItemGroup>
 
 </Project>
