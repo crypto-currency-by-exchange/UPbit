@@ -10,28 +10,15 @@
 		<Company>ShareInvest Corp.</Company>
 		<Copyright>Copyright ⓒ 2024, ShareInvest Corp.</Copyright>
 		<PackageProjectUrl>https://github.com/crypto-currency-by-exchange</PackageProjectUrl>
-		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>ShareInvest.$(AssemblyName)</PackageId>
-		<PackageIcon>png-transparent-upbit-hd-logo.png</PackageIcon>
+		<PackageIcon></PackageIcon>
 		<PackageTags>crypto,trading,api,upbit,algorithm</PackageTags>
-		<Version>1.0.0.2</Version>
+		<Version>1.0.0.4</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\..\Pictures\Icon\png-transparent-upbit-hd-logo.png">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-		<None Include="I:\source\C#\.NET\NAVER\LICENSE.txt">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="ShareInvest.Crypto" Version="1.0.0" />
+		<ProjectReference Include="..\Crypto\Crypto.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@ namespace ShareInvest.UPbit.Models;
 public class RealTicker : Ticker
 {
     [DataMember, JsonProperty("type"), JsonPropertyName("type")]
-    public string? Type
+    public override string? Type
     {
         get; set;
     }
