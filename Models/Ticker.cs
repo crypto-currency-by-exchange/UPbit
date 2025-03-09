@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 
+using ShareInvest.Crypto.Models;
+
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;

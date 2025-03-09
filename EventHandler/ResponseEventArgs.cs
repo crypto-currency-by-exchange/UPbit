@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using ShareInvest.Crypto.Models;
 using ShareInvest.UPbit.Models;
 
 namespace ShareInvest.UPbit.EventHandler;

@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 
+using ShareInvest.Crypto.Models;
+
 using System.Runtime.Serialization;
 
 namespace ShareInvest.UPbit.Models;

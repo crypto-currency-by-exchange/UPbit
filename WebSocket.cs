@@ -2,7 +2,9 @@
 
 using ShareInvest.Crypto;
 using ShareInvest.UPbit.EventHandler;
+using ShareInvest.UPbit.Models;
 
+using System.Collections.Concurrent;
 using System.Net.WebSockets;
 
 using System.Text;
@@ -61,5 +63,14 @@ public class WebSocket : ShareWebSocket<ResponseEventArgs>
         await base.ConnectAsync(token, interval: interval ?? TimeSpan.FromSeconds(0xA));
     }
 
+    public void SetQuotes(Orderbook orderbook)
+    {
+        if (string.IsNullOrEmpty(orderbook.Code) is false)
+        {
+            quotes[orderbook.Code] = orderbook;
+        }
+    }
+
     readonly CancellationTokenSource cts = new();
+    readonly ConcurrentDictionary<string, Orderbook> quotes = new();
 }
